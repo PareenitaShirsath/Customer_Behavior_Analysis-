@@ -37,6 +37,12 @@ ORDER BY AVG("Review Rating") DESC
 LIMIT 5;
 
 --Q4. Compare the average Purchase Amounts between Standard and Express Shipping. 
+SELECT 
+    "Shipping Type",
+    ROUND(AVG("Purchase Amount (USD)"), 2) AS avg_purchase
+FROM customer
+WHERE "Shipping Type" IN ('Standard', 'Express')
+GROUP BY "Shipping Type";
 
 
 --Q5. Do subscribed customers spend more? Compare average spend and total revenue 
@@ -52,11 +58,37 @@ ORDER BY total_revenue DESC;
 
 
 --Q6. Which 5 products have the highest percentage of purchases with discounts applied?
+SELECT 
+    "Item Purchased",
+    ROUND(
+        100.0 * SUM(CASE WHEN "Discount Applied" = 'Yes' THEN 1 ELSE 0 END) 
+        / COUNT(*),
+        2
+    ) AS discount_percentage
+FROM customer
+GROUP BY "Item Purchased"
+ORDER BY discount_percentage DESC
+LIMIT 5;
 
 
 
 --Q7. Segment customers into New, Returning, and Loyal based on their total 
 -- number of previous purchases, and show the count of each segment. 
+WITH customer_segments AS (
+    SELECT 
+        "Customer ID",
+        CASE
+            WHEN "Previous Purchases" = 0 THEN 'New'
+            WHEN "Previous Purchases" BETWEEN 1 AND 5 THEN 'Returning'
+            ELSE 'Loyal'
+        END AS segment
+    FROM customer
+)
+SELECT 
+    segment,
+    COUNT(*) AS number_of_customers
+FROM customer_segments
+GROUP BY segment;
 
 
 --Q8. What are the top 3 most purchased products within each category? 
@@ -82,7 +114,24 @@ WHERE item_rank <= 3;
 
  
 --Q9. Are customers who are repeat buyers (more than 5 previous purchases) also likely to subscribe?
+SELECT 
+    "Subscription Status",
+    COUNT(*) AS repeat_buyers
+FROM customer
+WHERE "Previous Purchases" > 5
+GROUP BY "Subscription Status";
 
 
 --Q10. What is the revenue contribution of each age group? 
+SELECT 
+    CASE
+        WHEN "Age" < 25 THEN 'Under 25'
+        WHEN "Age" BETWEEN 25 AND 40 THEN '25-40'
+        WHEN "Age" BETWEEN 41 AND 60 THEN '41-60'
+        ELSE '60+'
+    END AS age_group,
+    SUM("Purchase Amount (USD)") AS total_revenue
+FROM customer
+GROUP BY age_group
+ORDER BY total_revenue DESC;
 

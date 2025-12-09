@@ -68,8 +68,7 @@ Key objectives include:
 
 ---
 
-![Customer Behavior Analysis](https://raw.githubusercontent.com/PareenitaShirsath/Customer_Behavior_Analysis-/main/flowchart.png)
-
+![Customer Behavior Analysis](https://github.com/PareenitaShirsath/Customer_Behavior_Analysis-/blob/main/WORKFLOW.png)
 
 
 

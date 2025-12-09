@@ -68,6 +68,11 @@ Key objectives include:
 
 ---
 
+![Customer Behavior Analysis](https://raw.githubusercontent.com/PareenitaShirsath/Customer_Behavior_Analysis-/main/flowchart.png)
+
+
+
+
 ## 🛠️ How to Use This Project
 
 ### 📥 Clone the Repository

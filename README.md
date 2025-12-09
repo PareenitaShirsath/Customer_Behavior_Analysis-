@@ -73,8 +73,8 @@ Key objectives include:
 ### 📥 Clone the Repository
 
 ```bash
-git clone https://github.com/amlanmohanty1/customer-trends-data-analysis-SQL-Python-PowerBI.git
-cd customer-trends-data-analysis-SQL-Python-PowerBI
+[git clone https://github.com/amlanmohanty1/customer-trends-data-analysis-SQL-Python-PowerBI.git
+cd customer-trends-data-analysis-SQL-Python-PowerBI](https://github.com/PareenitaShirsath/Customer_Behavior_Analysis-.git)
 ```
 
 ---
